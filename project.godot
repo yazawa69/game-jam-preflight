@@ -23,6 +23,14 @@ buses/default_bus_layout="res://Resources/Audio/default_bus_layout.tres"
 
 EventBus="*res://Scripts/Autoloads/EventBus.gd"
 
+[file_customization]
+
+folder_colors={
+"res://Resources/": "red",
+"res://Scenes/": "teal",
+"res://Scripts/": "yellow"
+}
+
 [global_group]
 
 PlayerCharacter="A Group only for the PlayerCharacter"
