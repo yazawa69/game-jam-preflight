@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cf005ui47tble"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i5vke"]
+size = Vector2(20, 20)
+
+[sub_resource type="Gradient" id="Gradient_i5vke"]
+colors = PackedColorArray(0, 0.685597, 0.359878, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6j2t7"]
+noise_type = 2
+frequency = 0.0126
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ypcj8"]
+color_ramp = SubResource("Gradient_i5vke")
+noise = SubResource("FastNoiseLite_6j2t7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkigo"]
+albedo_texture = SubResource("NoiseTexture2D_ypcj8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6j2t7"]
+size = Vector3(20, 0.2, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_i5vke")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jkigo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100401, 0)
+shape = SubResource("BoxShape3D_6j2t7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -6, 0)

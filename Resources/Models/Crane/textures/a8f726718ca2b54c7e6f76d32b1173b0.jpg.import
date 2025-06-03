@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://b8yvrqhwa4tmq"
+path.s3tc="res://.godot/imported/a8f726718ca2b54c7e6f76d32b1173b0.jpg-cb9b1065cee0c510133617d861639c48.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://Resources/Models/Crane/textures/a8f726718ca2b54c7e6f76d32b1173b0.jpg"
+dest_files=["res://.godot/imported/a8f726718ca2b54c7e6f76d32b1173b0.jpg-cb9b1065cee0c510133617d861639c48.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=8
+roughness/src_normal="res://Resources/Modelss/Crane/textures/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

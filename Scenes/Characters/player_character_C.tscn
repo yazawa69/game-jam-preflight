@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd7yn6pmed3di"]
+
+[ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_062p5"]
+[ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_xxiwk"]
+[ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="3_deetc"]
+[ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="4_vycmh"]
+[ext_resource type="PackedScene" uid="uid://cis4ekj701g72" path="res://Resources/Models/Crane/crane.blend" id="4_xxiwk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l560e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_deetc"]
+size = Vector3(1, 1, 0.208496)
+
+[node name="PlayerCharacter" type="CharacterBody3D" groups=["PlayerCharacter"]]
+script = ExtResource("1_062p5")
+metadata/_custom_type_script = "uid://dy3ttxark73hp"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+unique_name_in_owner = true
+script = ExtResource("2_xxiwk")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("3_deetc")
+metadata/_custom_type_script = "uid://dtxg4pq018gks"
+
+[node name="VisualAppearance" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualAppearance"]
+visible = false
+mesh = SubResource("CapsuleMesh_l560e")
+skeleton = NodePath("../..")
+
+[node name="crane" parent="VisualAppearance" instance=ExtResource("4_xxiwk")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614463, 0.0212402)
+shape = SubResource("BoxShape3D_deetc")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CamSpringArm" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 6.0
+margin = 0.5
+
+[node name="PlayerCam" type="Camera3D" parent="CameraPivot/CamSpringArm"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+script = ExtResource("4_vycmh")

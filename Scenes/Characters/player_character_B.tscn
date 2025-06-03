@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://chwmgy1ahtcbw"]
+
+[ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_okqor"]
+[ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_v5f1d"]
+[ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="3_56xxf"]
+[ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="4_m4ssk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_okqor"]
+size = Vector3(1, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_okqor"]
+size = Vector3(1, 1, 3.01147)
+
+[node name="PlayerCharacter" type="CharacterBody3D" groups=["PlayerCharacter"]]
+script = ExtResource("1_okqor")
+metadata/_custom_type_script = "uid://dy3ttxark73hp"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+unique_name_in_owner = true
+script = ExtResource("2_v5f1d")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("3_56xxf")
+metadata/_custom_type_script = "uid://dtxg4pq018gks"
+
+[node name="VisualAppearance" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualAppearance"]
+mesh = SubResource("BoxMesh_okqor")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0032959)
+shape = SubResource("BoxShape3D_okqor")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CamSpringArm" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 6.0
+margin = 0.5
+
+[node name="PlayerCam" type="Camera3D" parent="CameraPivot/CamSpringArm"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+script = ExtResource("4_m4ssk")

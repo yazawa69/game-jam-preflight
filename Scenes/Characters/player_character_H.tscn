@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3sax1yp45r0"]
+
+[ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_l560e"]
+[ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_3pywu"]
+[ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="2_c2rcm"]
+[ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="3_71boo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l560e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l560e"]
+
+[node name="PlayerCharacter" type="CharacterBody3D" groups=["PlayerCharacter"]]
+script = ExtResource("1_l560e")
+metadata/_custom_type_script = "uid://dy3ttxark73hp"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+unique_name_in_owner = true
+script = ExtResource("2_3pywu")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("3_71boo")
+metadata/_custom_type_script = "uid://dtxg4pq018gks"
+
+[node name="VisualAppearance" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualAppearance"]
+mesh = SubResource("CapsuleMesh_l560e")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_l560e")
+
+[node name="CameraPivot" type="Marker3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CamSpringArm" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 6.0
+margin = 0.5
+
+[node name="PlayerCam" type="Camera3D" parent="CameraPivot/CamSpringArm"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+script = ExtResource("2_c2rcm")
