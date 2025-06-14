@@ -24,8 +24,7 @@ func process_input(event: InputEvent) -> State:
 		pass
 	# transition to Move State
 	if Input.get_vector("move_left", "move_right", "move_forward", "move_back"):
-		#return move_state
-		pass
+		return move_state
 	return null
 
 func process_physics(delta: float) -> State:
