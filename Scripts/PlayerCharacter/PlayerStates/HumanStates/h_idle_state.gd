@@ -1,12 +1,9 @@
 extends State
 
 @export_group("States")
-@export var fall_state: State # TODO
-@export var jump_state: State # TODO
-@export var move_state: State # TODO
-
-@export_group("Properties")
-@export var anim_speed_transition_speed: float = .1 # yes that name is stupid
+@export var fall_state: State # transition implemented
+@export var jump_state: State # transition implemented
+@export var move_state: State # transition implemented
 
 var anim_speed_start: float
 
@@ -20,12 +17,10 @@ func exit() -> void:
 func process_input(event: InputEvent) -> State:
 	# transition to Jump State
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
-		#return jump_state
-		pass
+		return jump_state
 	# transition to Move State
 	if Input.get_vector("move_left", "move_right", "move_forward", "move_back"):
-		#return move_state
-		pass
+		return move_state
 	return null
 
 func process_physics(delta: float) -> State:
