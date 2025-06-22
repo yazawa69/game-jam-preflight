@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd7yn6pmed3di"]
+[gd_scene load_steps=12 format=3 uid="uid://dd7yn6pmed3di"]
 
 [ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_062p5"]
 [ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_xxiwk"]
-[ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="3_deetc"]
+[ext_resource type="Script" uid="uid://cw43v85w18en2" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_idle_state.gd" id="3_xxiwk"]
+[ext_resource type="Script" uid="uid://ov6gk5cwd4qn" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_move_state.gd" id="4_deetc"]
 [ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="4_vycmh"]
 [ext_resource type="PackedScene" uid="uid://cis4ekj701g72" path="res://Resources/Models/Crane/crane.blend" id="4_xxiwk"]
+[ext_resource type="Script" uid="uid://bttis1dmq58ba" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_fall_state.gd" id="5_vycmh"]
+[ext_resource type="Script" uid="uid://bjbv054llvtl7" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_jump_state.gd" id="6_fqhcw"]
+[ext_resource type="Script" uid="uid://dx6msnqd0gbph" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_float_state.gd" id="7_tbmyc"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_l560e"]
+[sub_resource type="Curve" id="Curve_deetc"]
+_data = [Vector2(0, 0.449438), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.12219, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_deetc"]
 size = Vector3(1, 1, 0.208496)
@@ -20,21 +26,61 @@ unique_name_in_owner = true
 script = ExtResource("2_xxiwk")
 starting_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachine"]
-script = ExtResource("3_deetc")
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
+script = ExtResource("3_xxiwk")
+fall_state = NodePath("../FallState")
+jump_state = NodePath("../JumpState")
+move_state = NodePath("../MoveState")
 metadata/_custom_type_script = "uid://dtxg4pq018gks"
+
+[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+script = ExtResource("4_deetc")
+idle_state = NodePath("../IdleState")
+jump_state = NodePath("../JumpState")
+fall_state = NodePath("../FallState")
+acceleration_curve = SubResource("Curve_deetc")
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "float_state")]
+script = ExtResource("5_vycmh")
+idle_state = NodePath("../IdleState")
+move_state = NodePath("../MoveState")
+float_state = NodePath("../FloatState")
+
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state")]
+script = ExtResource("6_fqhcw")
+fall_state = NodePath("../FallState")
+
+[node name="FloatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state")]
+script = ExtResource("7_tbmyc")
+fall_state = NodePath("../FallState")
+idle_state = NodePath("../IdleState")
 
 [node name="VisualAppearance" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.407283, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="VisualAppearance"]
-visible = false
-mesh = SubResource("CapsuleMesh_l560e")
-skeleton = NodePath("../..")
+transform = Transform3D(1.31, 0, 0, 0, 1.31, 0, 0, 0, 1.31, 0, -0.407283, 0)
 
 [node name="crane" parent="VisualAppearance" instance=ExtResource("4_xxiwk")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 0, 0, 0)
+
+[node name="Skeleton3D" parent="VisualAppearance/crane/Armature" index="0"]
+bones/0/position = Vector3(-0.00890941, 0.00722693, 0.00637198)
+bones/0/rotation = Quaternion(0.00590534, -0.71321, -0.034455, 0.700078)
+bones/1/position = Vector3(0.00158975, 0.0994344, 0.200485)
+bones/1/rotation = Quaternion(0.15201, 0.699095, 0.186722, 0.673272)
+bones/2/rotation = Quaternion(-0.0501067, -0.0228158, 0.360678, 0.931064)
+bones/3/rotation = Quaternion(-0.0266143, 0.00173236, -0.000580053, 0.999644)
+bones/4/rotation = Quaternion(-0.00647556, -0.00957054, 0.0657148, 0.997772)
+bones/5/position = Vector3(0.0354151, 0.0695059, -0.228129)
+bones/5/rotation = Quaternion(-0.249742, 0.00600949, 0.0425425, 0.967359)
+bones/6/rotation = Quaternion(-0.404551, 0.00293514, 0.00300505, 0.914506)
+bones/7/rotation = Quaternion(-0.148579, 0.0107335, 0.000930477, 0.988842)
+bones/8/rotation = Quaternion(-0.289033, -0.630858, -0.362056, 0.622409)
+bones/9/rotation = Quaternion(-0.112225, -0.00394785, 0.0302362, 0.993215)
+bones/10/rotation = Quaternion(-0.345278, 0.612018, 0.411449, 0.580454)
+bones/11/rotation = Quaternion(-0.0778391, -0.0058135, -0.0378775, 0.996229)
+
+[node name="AnimationPlayer" parent="VisualAppearance/crane" index="1"]
+autoplay = "Flying"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.1415, 0.0212402)
@@ -42,12 +88,15 @@ shape = SubResource("BoxShape3D_deetc")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="CamSpringArm" type="SpringArm3D" parent="CameraPivot"]
-spring_length = 6.0
-margin = 0.5
+spring_length = 7.0
+margin = 1.0
 
 [node name="PlayerCam" type="Camera3D" parent="CameraPivot/CamSpringArm"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 script = ExtResource("4_vycmh")
+
+[editable path="VisualAppearance/crane"]

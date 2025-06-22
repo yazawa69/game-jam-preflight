@@ -4,9 +4,9 @@ extends State
 @export var fall_state: State # transition implemented
 
 @export_group("Properties")
-@export var jump_force: float = 10.0
-@export var max_speed: float = 4.
-@export var rotation_speed: float = 2.
+@export var upward_jump_force: float = 20.0
+@export var max_speed: float = 8.
+@export var rotation_speed: float = 4.
 @export var jump_amplifier = .25
 
 var _direction: Vector3 # direction the player wants to move to
@@ -18,8 +18,10 @@ func enter() -> void:
 	super() # prints out the name of the current state for debugging
 	_initial_velocity = abs(parent.velocity.normalized())*3.5
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	parent.velocity.y = 0.0
-	parent.velocity.y = jump_force # add jump force once
+	parent.velocity.y = upward_jump_force # add jump force once
+
+func exit() -> void:
+	jump_amplifier = .25
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")

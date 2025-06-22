@@ -20,6 +20,9 @@ func enter() -> void:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	parent.velocity.y = jump_force # add jump force once
 
+func exit() -> void:
+	jump_amplifier = .25
+
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	return null

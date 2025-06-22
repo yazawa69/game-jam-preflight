@@ -2,12 +2,12 @@ extends State
 
 @export_group("States")
 @export var fall_state: State # transition implemented
+@export var idle_state: State
 
 @export_group("Properties")
-@export var jump_force: float = 10.0
-@export var max_speed: float = 4.
-@export var rotation_speed: float = 2.
-@export var jump_amplifier = .25
+@export var float_constant: float = -100.
+@export var max_speed: float = 10.
+@export var rotation_speed: float = 10.
 
 var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
@@ -18,15 +18,15 @@ func enter() -> void:
 	super() # prints out the name of the current state for debugging
 	_initial_velocity = abs(parent.velocity.normalized())*3.5
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	parent.velocity.y = 0.0
-	parent.velocity.y = jump_force # add jump force once
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	if Input.is_action_just_released("jump"):
+		return fall_state
 	return null
 
 func process_physics(delta: float) -> State:
-	# steer player while jumping a little bit
+	# steer player while floating a little bit
 	parent._get_cam_rotation()
 	_direction = (_input_dir.x * parent._camera_right + _input_dir.y * parent._camera_forward).normalized()
 	parent.velocity.x = _direction.x * (max_speed+_initial_velocity.x)
@@ -34,15 +34,10 @@ func process_physics(delta: float) -> State:
 	
 	if _input_dir != Vector2.ZERO: _rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 	
-	# make jump taller when button is held down
-	if Input.is_action_pressed("jump"):
-		parent.velocity.y += jump_amplifier
-		jump_amplifier = max(0.0, jump_amplifier-.01)
-	
-	parent.velocity.y -= gravity * 2. * delta # gravity 
+	parent.velocity.y = float_constant * delta # floating
 	parent.move_and_slide() # calculate physics
 	
-	# transition to fall state
-	if parent.velocity.y <= 0:
-		return fall_state
+	# transition to idle state
+	if parent.is_on_floor():
+		return idle_state
 	return null

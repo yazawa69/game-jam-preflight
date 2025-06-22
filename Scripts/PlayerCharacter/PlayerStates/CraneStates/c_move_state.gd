@@ -6,28 +6,20 @@ extends State
 @export var fall_state: State # transition implemented
 
 @export_group("Properties")
-@export var max_speed: float = 12.0
-@export var acceleration: float = 5.0
+@export var max_speed: float = 8.0
+@export var acceleration: float = 4.0
 @export var deceleration: float = 10.0
-@export var rotation_speed: float = 7.0 # Speed at which the player rotates to face movement direction
+@export var rotation_speed: float = 3.0 # Speed at which the player rotates to face movement direction
 @export var acceleration_curve: Curve # for non linear interpolation
 
 var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _time: float
 
-@onready var footsteps: AudioStreamPlayer3D = %ASP_Footsteps
-
 func enter() -> void:
 	super() # used for debugging, just prints out the name of the current state
 	# check once for input right after entering the state, if this is not done then there is input delay
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	print(footsteps)
-	footsteps.finished.connect(_on_asp_footsteps_finished)
-	footsteps.play()
-
-func exit() -> void:
-	footsteps.finished.disconnect(_on_asp_footsteps_finished)
 
 func process_input(event: InputEvent) -> State:
 	# check for input
@@ -47,13 +39,11 @@ func process_physics(delta: float) -> State:
 	# the direction the player will walk towards
 	_direction = (_input_dir.x * parent._camera_right + _input_dir.y * parent._camera_forward).normalized()
 	if  _input_dir != Vector2.ZERO: # Accelerate when moving
-		footsteps.stream_paused = false
 		_time += delta
 		parent.velocity = parent.velocity.lerp(_direction * max_speed, non_linear_acc * acceleration * delta)
 		_rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 		_blend_from_position = _blend_from_position.lerp(_blend_to_position, delta * transition_speed * non_linear_acc + .1) # lerp to idle anim in the blend space
 	else: # Decelerate if no input
-		footsteps.stream_paused = true
 		_time -= delta * 2.
 		parent.velocity = parent.velocity.lerp(Vector3.ZERO, deceleration * delta)
 		_blend_from_position = _blend_from_position.lerp(Vector2(-.1, .5), delta * transition_speed) # lerp to walking anim in th blend space
@@ -71,6 +61,3 @@ func process_physics(delta: float) -> State:
 		return fall_state
 	
 	return null
-
-func _on_asp_footsteps_finished():
-	footsteps.play()
