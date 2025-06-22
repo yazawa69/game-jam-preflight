@@ -23,7 +23,7 @@ func exit() -> void:
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_pressed("jump"):
 		return float_state
 	return null
 
