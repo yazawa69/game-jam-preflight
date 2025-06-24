@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://chwmgy1ahtcbw"]
+[gd_scene load_steps=10 format=3 uid="uid://chwmgy1ahtcbw"]
 
 [ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_okqor"]
 [ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_v5f1d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="4_m4ssk"]
 [ext_resource type="Script" uid="uid://brfkur3tjgc25" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_move_state.gd" id="4_v5f1d"]
 [ext_resource type="PackedScene" uid="uid://cxen583cq5xc7" path="res://Resources/Models/Boat/test_boat.blend" id="5_56xxf"]
+[ext_resource type="Script" uid="uid://biwnkep5j3bge" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_fall_state.gd" id="5_m4ssk"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_okqor"]
 size = Vector3(1, 1, 3)
@@ -22,12 +23,21 @@ unique_name_in_owner = true
 script = ExtResource("2_v5f1d")
 starting_state = NodePath("MoveState")
 
-[node name="IdleState" type="Node" parent="StateMachine"]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "move_state")]
 script = ExtResource("3_56xxf")
+fall_state = NodePath("../FallState")
+move_state = NodePath("../MoveState")
 metadata/_custom_type_script = "uid://dtxg4pq018gks"
 
-[node name="MoveState" type="Node" parent="StateMachine"]
+[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state")]
 script = ExtResource("4_v5f1d")
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state")]
+script = ExtResource("5_m4ssk")
+idle_state = NodePath("../IdleState")
+move_state = NodePath("../MoveState")
 
 [node name="VisualAppearance" type="Node3D" parent="."]
 unique_name_in_owner = true

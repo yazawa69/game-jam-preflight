@@ -1,8 +1,16 @@
+##### this script handles the initialization of the statemachines, characterswitching and has some utility functions
+
 class_name PlayerCharacter
 extends CharacterBody3D
-@onready var _state_machine = %StateMachine # state machine node inside the player
+
+@onready var _state_machine = %Human # state machine node inside the player
 @onready var player_camera: Camera3D = %PlayerCam
-@onready var char_visual: Node3D = %VisualAppearance
+
+@onready var char_visual: Node3D = %VisualAppearances
+
+# contains the statemachine, the collisionshape and the mesh of all the characters for easier access
+@export var char_arr: Array
+var _current_index: int = 0
 
 var _camera_forward: Vector3
 var _camera_right: Vector3
@@ -16,7 +24,11 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	_state_machine.process_input(event)
-	if Input.is_action_just_pressed("test"): 
+	if Input.is_action_just_pressed("switch_character_right"):
+		_switch_character(1)
+	if Input.is_action_just_pressed("switch_character_left"):
+		_switch_character(-1)
+	if Input.is_action_just_pressed("test"):
 		pass
 
 func _physics_process(delta: float) -> void:
@@ -32,6 +44,8 @@ func _rotate_character(delta: float, rotation_speed: float, direction: Vector3) 
 	var target_rotation = atan2(target_direction.x, target_direction.z)
 	# interpolate current Y rotation towards the target rotation
 	char_visual.rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
+	get_node("BoatCollision").rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
+	get_node("CraneCollision").rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
 
 func _get_cam_rotation() -> void:
 	# get camera transform in world space
@@ -43,3 +57,22 @@ func _get_cam_rotation() -> void:
 	# normalize to retrieve direction vectors
 	_camera_forward.normalized()
 	_camera_right.normalized()
+
+func _switch_character(dir: int) -> void:
+	if char_arr.size() == 0:
+		return
+	# Calculate next index
+	var next_index = (_current_index + dir) % char_arr.size()
+	print(char_arr[next_index])
+	
+	_state_machine.current_state.exit()
+	_state_machine = get_node(char_arr[next_index][0]) # state machine of next index
+	_state_machine.init(self) # initialize new state machine
+	get_node(char_arr[next_index][1]).show() # mesh of next index
+	get_node(char_arr[next_index][2]).disabled = false # collision shape of next index
+	
+	#get_node(char_arr[_current_index][0]) # state machine of current index
+	get_node(char_arr[_current_index][1]).hide() # mesh of current index
+	get_node(char_arr[_current_index][2]).disabled = true # collision shape of current index
+	
+	_current_index = next_index
