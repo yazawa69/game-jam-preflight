@@ -1,10 +1,10 @@
 extends State
 
 @export_group("States")
-@export var fall_state: State # transition implemented
+@export var float_state: State # transition implemented
 
 @export_group("Properties")
-@export var upward_jump_force: float = 20.0
+@export var upward_jump_force: float = 5.0
 @export var max_speed: float = 8.
 @export var rotation_speed: float = 4.
 @export var jump_amplifier = .25
@@ -34,7 +34,7 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = _direction.x * (max_speed+_initial_velocity.x)
 	parent.velocity.z = _direction.z * (max_speed+_initial_velocity.z)
 	
-	if _input_dir != Vector2.ZERO: _rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+	if _input_dir != Vector2.ZERO: parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 	
 	# make jump taller when button is held down
 	if Input.is_action_pressed("jump"):
@@ -46,5 +46,5 @@ func process_physics(delta: float) -> State:
 	
 	# transition to fall state
 	if parent.velocity.y <= 0:
-		return fall_state
+		return float_state
 	return null

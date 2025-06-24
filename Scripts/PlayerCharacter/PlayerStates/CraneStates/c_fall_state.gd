@@ -23,7 +23,7 @@ func exit() -> void:
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_just_released("jump"):
 		return float_state
 	return null
 
@@ -35,9 +35,9 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = _direction.x * (max_speed+_initial_velocity.x)
 	parent.velocity.z = _direction.z * (max_speed+_initial_velocity.z)
 	
-	if _input_dir != Vector2.ZERO: _rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+	if _input_dir != Vector2.ZERO: parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 	
-	parent.velocity.y -= gravity * 4. * delta # gravity
+	parent.velocity.y -= gravity * 8. * delta # gravity
 	parent.move_and_slide() # calculate physics
 	
 	# transition to move state

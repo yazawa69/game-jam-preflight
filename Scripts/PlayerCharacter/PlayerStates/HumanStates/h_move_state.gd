@@ -50,7 +50,7 @@ func process_physics(delta: float) -> State:
 		footsteps.stream_paused = false
 		_time += delta
 		parent.velocity = parent.velocity.lerp(_direction * max_speed, non_linear_acc * acceleration * delta)
-		_rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+		parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 		_blend_from_position = _blend_from_position.lerp(_blend_to_position, delta * transition_speed * non_linear_acc + .1) # lerp to idle anim in the blend space
 	else: # Decelerate if no input
 		footsteps.stream_paused = true

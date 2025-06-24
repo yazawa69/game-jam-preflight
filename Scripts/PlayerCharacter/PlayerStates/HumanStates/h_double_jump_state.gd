@@ -32,7 +32,7 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = _direction.x * (max_speed+_initial_velocity.x)
 	parent.velocity.z = _direction.z * (max_speed+_initial_velocity.z)
 	
-	if _input_dir != Vector2.ZERO: _rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+	if _input_dir != Vector2.ZERO: parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 	
 	# make jump taller when button is held down
 	if Input.is_action_pressed("jump"):

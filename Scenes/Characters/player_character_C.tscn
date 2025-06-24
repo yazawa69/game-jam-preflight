@@ -26,18 +26,18 @@ unique_name_in_owner = true
 script = ExtResource("2_xxiwk")
 starting_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state")]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("float_state", "jump_state", "move_state")]
 script = ExtResource("3_xxiwk")
-fall_state = NodePath("../FallState")
+float_state = NodePath("../FloatState")
 jump_state = NodePath("../JumpState")
 move_state = NodePath("../MoveState")
 metadata/_custom_type_script = "uid://dtxg4pq018gks"
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "fall_state")]
+[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "float_state")]
 script = ExtResource("4_deetc")
 idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
-fall_state = NodePath("../FallState")
+float_state = NodePath("../FloatState")
 acceleration_curve = SubResource("Curve_deetc")
 
 [node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "float_state")]
@@ -46,9 +46,9 @@ idle_state = NodePath("../IdleState")
 move_state = NodePath("../MoveState")
 float_state = NodePath("../FloatState")
 
-[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state")]
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("float_state")]
 script = ExtResource("6_fqhcw")
-fall_state = NodePath("../FallState")
+float_state = NodePath("../FloatState")
 
 [node name="FloatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state")]
 script = ExtResource("7_tbmyc")

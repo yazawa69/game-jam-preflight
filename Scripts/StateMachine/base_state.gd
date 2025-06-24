@@ -41,15 +41,6 @@ func process_frame(delta: float) -> State:
 func process_physics(delta: float) -> State:
 	return null
 
-# dont know why i put that here, should be refactored into the player_character script
-func _rotate_character(delta: float, rotation_speed: float, direction: Vector3) -> void:
-	# get forward direction in which the character should rotate
-	var target_direction = -direction
-	# calculate target rotation angle in radians (around the Y axis)
-	var target_rotation = atan2(target_direction.x, target_direction.z)
-	# interpolate current Y rotation towards the target rotation
-	parent.char_visual.rotation.y = lerp_angle(parent.char_visual.rotation.y, target_rotation, rotation_speed * delta)
-
 func start_timer():
 	start_time = Time.get_ticks_msec()
 

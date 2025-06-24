@@ -3,7 +3,7 @@ extends State
 @export_group("States")
 @export var idle_state: State # transition implemented
 @export var jump_state: State # transition implemented
-@export var fall_state: State # transition implemented
+@export var float_state: State # transition implemented
 
 @export_group("Properties")
 @export var max_speed: float = 8.0
@@ -41,7 +41,7 @@ func process_physics(delta: float) -> State:
 	if  _input_dir != Vector2.ZERO: # Accelerate when moving
 		_time += delta
 		parent.velocity = parent.velocity.lerp(_direction * max_speed, non_linear_acc * acceleration * delta)
-		_rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+		parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 		_blend_from_position = _blend_from_position.lerp(_blend_to_position, delta * transition_speed * non_linear_acc + .1) # lerp to idle anim in the blend space
 	else: # Decelerate if no input
 		_time -= delta * 2.
@@ -58,6 +58,6 @@ func process_physics(delta: float) -> State:
 	
 	# transition to fall state
 	if !parent.is_on_floor():
-		return fall_state
+		return float_state
 	
 	return null

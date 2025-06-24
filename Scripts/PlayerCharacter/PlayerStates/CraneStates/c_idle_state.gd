@@ -1,7 +1,7 @@
 extends State
 
 @export_group("States")
-@export var fall_state: State # transition implemented
+@export var float_state: State # transition implemented
 @export var jump_state: State # transition implemented
 @export var move_state: State # transition implemented
 
@@ -27,6 +27,6 @@ func process_physics(delta: float) -> State:
 	
 	# transition to Fall State
 	if !parent.is_on_floor():
-		return fall_state
+		return float_state
 	
 	return null

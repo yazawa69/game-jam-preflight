@@ -25,6 +25,14 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	_state_machine.process_frame(delta)
 
+func _rotate_character(delta: float, rotation_speed: float, direction: Vector3) -> void:
+	# get forward direction in which the character should rotate
+	var target_direction = -direction
+	# calculate target rotation angle in radians (around the Y axis)
+	var target_rotation = atan2(target_direction.x, target_direction.z)
+	# interpolate current Y rotation towards the target rotation
+	char_visual.rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
+
 func _get_cam_rotation() -> void:
 	# get camera transform in world space
 	_camera_forward = player_camera.global_basis.z

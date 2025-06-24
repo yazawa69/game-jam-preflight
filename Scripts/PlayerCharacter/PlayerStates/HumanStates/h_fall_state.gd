@@ -38,7 +38,7 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = _direction.x * (max_speed+_initial_velocity.x)
 	parent.velocity.z = _direction.z * (max_speed+_initial_velocity.z)
 	
-	if _input_dir != Vector2.ZERO: _rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
+	if _input_dir != Vector2.ZERO: parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 	
 	parent.velocity.y -= gravity * 4. * delta # gravity
 	parent.move_and_slide() # calculate physics

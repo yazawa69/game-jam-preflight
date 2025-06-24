@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_okqor"]
 [ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_v5f1d"]
-[ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="3_56xxf"]
+[ext_resource type="Script" uid="uid://bc1mtas6lu430" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_idle_state.gd" id="3_56xxf"]
 [ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="4_m4ssk"]
 [ext_resource type="Script" uid="uid://brfkur3tjgc25" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_move_state.gd" id="4_v5f1d"]
 [ext_resource type="PackedScene" uid="uid://cxen583cq5xc7" path="res://Resources/Models/Boat/test_boat.blend" id="5_56xxf"]
