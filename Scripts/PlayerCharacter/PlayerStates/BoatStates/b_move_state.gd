@@ -10,6 +10,9 @@ extends State
 @export var max_rot_angle: float = PI*0.75
 
 @onready var test_boat = %test_boat
+@onready var visual_appearances = %VisualAppearances
+@onready var boat_collision = %BoatCollision
+
 
 var target_velocity: Vector3 = Vector3.ZERO
 var target_rotation: float = 0.0
@@ -27,7 +30,8 @@ func process_physics(delta: float) -> State:
 	if Input.is_action_pressed("move_forward"):
 		# Interpolate rotation up to max rotation angle - disallowing sharp turns
 		target_rotation = lerpf(target_rotation, -input_dir.x * max_rot_angle, rot_acceleration)
-		parent.rotate_y(target_rotation * delta)
+		visual_appearances.rotate_y(target_rotation * delta)
+		boat_collision.rotate_y(target_rotation * delta)
 		current_speed = lerpf(current_speed, move_speed, acceleration * delta)
 	else:
 		current_speed = lerpf(current_speed, 0.0, acceleration * delta)

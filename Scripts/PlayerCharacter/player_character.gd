@@ -68,11 +68,11 @@ func _switch_character(dir: int) -> void:
 	_state_machine.current_state.exit()
 	_state_machine = get_node(char_arr[next_index][0]) # state machine of next index
 	_state_machine.init(self) # initialize new state machine
-	get_node(char_arr[next_index][1]).show() # mesh of next index
+	#get_node(char_arr[next_index][1]).show() # mesh of next index
 	get_node(char_arr[next_index][2]).disabled = false # collision shape of next index
 	
 	#get_node(char_arr[_current_index][0]) # state machine of current index
-	get_node(char_arr[_current_index][1]).hide() # mesh of current index
+	#get_node(char_arr[_current_index][1]).hide() # mesh of current index
 	get_node(char_arr[_current_index][2]).disabled = true # collision shape of current index
 	
 	_current_index = next_index
