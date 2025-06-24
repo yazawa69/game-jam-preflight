@@ -1,6 +1,5 @@
 class_name PlayerCharacter
 extends CharacterBody3D
-
 @onready var _state_machine = %StateMachine # state machine node inside the player
 @onready var player_camera: Camera3D = %PlayerCam
 @onready var char_visual: Node3D = %VisualAppearance
@@ -12,6 +11,8 @@ func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	_state_machine.init(self)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	_state_machine.process_input(event)
