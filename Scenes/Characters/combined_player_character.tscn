@@ -162,6 +162,7 @@ skeleton = NodePath("../..")
 
 [node name="crane" parent="VisualAppearances" instance=ExtResource("13_t8il2")]
 transform = Transform3D(-2.29048e-07, 0, 5.24, 0, 5.24, 0, -5.24, 0, -2.29048e-07, 0, -0.407283, 0)
+visible = false
 
 [node name="Skeleton3D" parent="VisualAppearances/crane/Armature" index="0"]
 bones/0/position = Vector3(-0.00890941, 0.00722693, 0.00637198)
@@ -186,6 +187,7 @@ autoplay = "Flying"
 [node name="test_boat" parent="VisualAppearances" instance=ExtResource("14_c5es3")]
 unique_name_in_owner = true
 transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0)
+visible = false
 
 [node name="AudioStreams" type="Node3D" parent="."]
 

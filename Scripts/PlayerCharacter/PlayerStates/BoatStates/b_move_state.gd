@@ -4,7 +4,7 @@ extends State
 @export var idle_state: State # transition implemented
 @export var fall_state: State # transition implemented
 
-@export var move_speed: float = 500.
+@export var move_speed: float = 600.
 @export var acceleration: float = 2.0
 @export var rot_acceleration: float = 0.1
 @export var max_rot_angle: float = PI*0.75
@@ -23,7 +23,7 @@ func enter() -> void:
 	parent.velocity = Vector3.ZERO # set velocity of the player to 0 after entering the state
 
 func process_physics(delta: float) -> State:
-	move_speed = 500.0 if parent._is_on_water else 50.0
+	var _move_speed = move_speed if parent._is_on_water else 50.0
 	
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var forward = test_boat.global_transform.basis.x
@@ -34,7 +34,7 @@ func process_physics(delta: float) -> State:
 		target_rotation = lerpf(target_rotation, -input_dir.x * max_rot_angle, rot_acceleration)
 		test_boat.rotate_y(target_rotation * delta)
 		boat_collision.rotate_y(target_rotation * delta) # hotfix
-		current_speed = lerpf(current_speed, move_speed, acceleration * delta)
+		current_speed = lerpf(current_speed, _move_speed, acceleration * delta)
 	else:
 		current_speed = lerpf(current_speed, 0.0, acceleration * delta)
 		target_rotation = 0.0
