@@ -56,7 +56,8 @@ height = 1.8462
 radius = 0.881837
 height = 4.0
 
-[node name="CombinedPlayerCharacter" type="CharacterBody3D"]
+[node name="CombinedPlayerCharacter" type="CharacterBody3D" groups=["PlayerCharacter"]]
+collision_layer = 2
 script = ExtResource("1_b0oxt")
 char_arr = [[NodePath("StateMachines/Human"), NodePath("VisualAppearances/test_human"), NodePath("HumanCollision")], [NodePath("StateMachines/Crane"), NodePath("VisualAppearances/crane"), NodePath("CraneCollision")], [NodePath("StateMachines/Boat"), NodePath("VisualAppearances/test_boat"), NodePath("BoatCollision")]]
 metadata/_custom_type_script = "uid://dy3ttxark73hp"
@@ -198,14 +199,12 @@ shape = SubResource("CapsuleShape3D_p156y")
 
 [node name="CraneCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.108899, -0.0729984)
-visible = false
 shape = SubResource("CapsuleShape3D_t8il2")
 disabled = true
 
 [node name="BoatCollision" type="CollisionShape3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.526333, -0.0621405)
-visible = false
 shape = SubResource("CapsuleShape3D_od8hc")
 disabled = true
 
