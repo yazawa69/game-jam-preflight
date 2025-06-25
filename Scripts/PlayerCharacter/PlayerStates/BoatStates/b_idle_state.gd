@@ -4,8 +4,6 @@ extends State
 @export var fall_state: State # transition implemented
 @export var move_state: State # transition implemented
 
-var anim_speed_start: float
-
 func enter() -> void:
 	super() #prints out the name of the state for debugging
 	parent.velocity = Vector3.ZERO # set velocity of the player to 0 after entering the state

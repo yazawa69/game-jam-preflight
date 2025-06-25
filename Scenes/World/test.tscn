@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cf005ui47tble"]
+[gd_scene load_steps=13 format=3 uid="uid://cf005ui47tble"]
 
+[ext_resource type="Material" uid="uid://cd15wu5ueqq6l" path="res://Resources/Materials/water_mat.tres" id="1_jkigo"]
 [ext_resource type="PackedScene" uid="uid://5yhm2te35gar" path="res://Scenes/Characters/combined_player_character.tscn" id="2_jkigo"]
 [ext_resource type="Material" uid="uid://cded0t1ld21sw" path="res://Resources/Materials/test.tres" id="2_ypcj8"]
 
@@ -54,6 +55,20 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_jkigo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100401, 0)
+shape = SubResource("BoxShape3D_6j2t7")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." groups=["water"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 20)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+material_override = ExtResource("1_jkigo")
+mesh = SubResource("PlaneMesh_i5vke")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jkigo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100401, 0)
 shape = SubResource("BoxShape3D_6j2t7")
 

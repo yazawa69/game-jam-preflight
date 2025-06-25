@@ -15,6 +15,10 @@ var _current_index: int = 0
 var _camera_forward: Vector3
 var _camera_right: Vector3
 
+var _is_boat: bool = false
+var _is_on_water: bool = false
+var _current_collider
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
@@ -33,6 +37,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_state_machine.process_physics(delta)
+	# check for water planes
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider != _current_collider:
+			_current_collider = collider
+			_is_on_water = true if collider.is_in_group("water") else false
 
 func _process(delta: float) -> void:
 	_state_machine.process_frame(delta)
@@ -44,8 +55,9 @@ func _rotate_character(delta: float, rotation_speed: float, direction: Vector3) 
 	var target_rotation = atan2(target_direction.x, target_direction.z)
 	# interpolate current Y rotation towards the target rotation
 	char_visual.rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
-	get_node("BoatCollision").rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
+	### hotfix ###
 	get_node("CraneCollision").rotation.y = lerp_angle(char_visual.rotation.y, target_rotation, rotation_speed * delta)
+	##############
 
 func _get_cam_rotation() -> void:
 	# get camera transform in world space
@@ -63,15 +75,16 @@ func _switch_character(dir: int) -> void:
 		return
 	# Calculate next index
 	var next_index = (_current_index + dir) % char_arr.size()
-	print(char_arr[next_index])
 	
+	# init new character
 	_state_machine.current_state.exit()
 	_state_machine = get_node(char_arr[next_index][0]) # state machine of next index
 	_state_machine.init(self) # initialize new state machine
 	get_node(char_arr[next_index][1]).show() # mesh of next index
 	get_node(char_arr[next_index][2]).disabled = false # collision shape of next index
+	_is_boat = String(char_arr[next_index][0]) == "StateMachines/Boat"
 	
-	#get_node(char_arr[_current_index][0]) # state machine of current index
+	# terminate old character 
 	get_node(char_arr[_current_index][1]).hide() # mesh of current index
 	get_node(char_arr[_current_index][2]).disabled = true # collision shape of current index
 	
