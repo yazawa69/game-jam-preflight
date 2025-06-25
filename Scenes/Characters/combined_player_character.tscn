@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://5yhm2te35gar"]
+[gd_scene load_steps=37 format=3 uid="uid://5yhm2te35gar"]
 
 [ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_b0oxt"]
 [ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_q8eto"]
@@ -25,6 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://cl0gf51w6b7rc" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV5.wav" id="18_wigkn"]
 [ext_resource type="AudioStream" uid="uid://wtfyupbv6ktg" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV6.wav" id="19_5tp3p"]
 [ext_resource type="AudioStream" uid="uid://cs3f846qk0uup" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV.wav" id="20_ki3jj"]
+[ext_resource type="AudioStream" uid="uid://ccu7t8bfb56ju" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_01.wav" id="25_umdb5"]
+[ext_resource type="AudioStream" uid="uid://cb00qiwehaobl" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_02.wav" id="26_penjb"]
+[ext_resource type="AudioStream" uid="uid://drylqu2im3wvy" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_03.wav" id="27_fmay1"]
 
 [sub_resource type="Curve" id="Curve_p156y"]
 _data = [Vector2(0, 0.314607), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.33483, 0.0, 0, 0]
@@ -45,6 +48,12 @@ stream_3/stream = ExtResource("17_p156y")
 stream_4/stream = ExtResource("18_wigkn")
 stream_5/stream = ExtResource("19_5tp3p")
 stream_6/stream = ExtResource("20_ki3jj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1k180"]
+streams_count = 3
+stream_0/stream = ExtResource("25_umdb5")
+stream_1/stream = ExtResource("26_penjb")
+stream_2/stream = ExtResource("27_fmay1")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p156y"]
 
@@ -194,6 +203,12 @@ visible = false
 [node name="ASP_Footsteps" type="AudioStreamPlayer3D" parent="AudioStreams"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_umdb5")
+bus = &"Sound Effects"
+
+[node name="ASP_Wingflaps" type="AudioStreamPlayer3D" parent="AudioStreams"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_1k180")
+bus = &"Sound Effects"
 
 [node name="HumanCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655237, 0)

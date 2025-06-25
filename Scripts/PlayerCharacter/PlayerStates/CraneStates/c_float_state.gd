@@ -13,11 +13,17 @@ var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _initial_velocity: Vector3
 
+@onready var wingflaps = %ASP_Wingflaps
 
 func enter() -> void:
 	super() # prints out the name of the current state for debugging
 	_initial_velocity = abs(parent.velocity.normalized())*3.5
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	wingflaps.finished.connect(_on_asp_wingflaps_finished)
+	wingflaps.play()
+
+func exit() -> void:
+	wingflaps.finished.disconnect(_on_asp_wingflaps_finished)
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -41,3 +47,6 @@ func process_physics(delta: float) -> State:
 	if parent.is_on_floor():
 		return idle_state
 	return null
+
+func _on_asp_wingflaps_finished():
+	wingflaps.play()

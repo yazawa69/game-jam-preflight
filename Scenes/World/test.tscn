@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf005ui47tble"]
+[gd_scene load_steps=16 format=3 uid="uid://cf005ui47tble"]
 
 [ext_resource type="Material" uid="uid://cd15wu5ueqq6l" path="res://Resources/Materials/water_mat.tres" id="1_jkigo"]
 [ext_resource type="PackedScene" uid="uid://5yhm2te35gar" path="res://Scenes/Characters/combined_player_character.tscn" id="2_jkigo"]
 [ext_resource type="Material" uid="uid://cded0t1ld21sw" path="res://Resources/Materials/test.tres" id="2_ypcj8"]
+[ext_resource type="AudioStream" uid="uid://bnorlto0ocp5s" path="res://Resources/Audio/Music/music_main_theme.mp3" id="4_1vcrp"]
+[ext_resource type="AudioStream" uid="uid://vf2dq58bg8t8" path="res://Resources/Audio/Ambient/ambient_river.mp3" id="5_mdlpv"]
+[ext_resource type="AudioStream" uid="uid://xlw8cresk018" path="res://Resources/Audio/Ambient/ambient_wind_rustling.mp3" id="6_rckm3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ypcj8"]
 sky_top_color = Color(1, 0.545098, 0, 1)
@@ -101,3 +104,23 @@ size = Vector3(15, 8, 74)
 
 [node name="CombinedPlayerCharacter" parent="." instance=ExtResource("2_jkigo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59708, 0)
+
+[node name="MainThemeAudioStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1vcrp")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
+
+[node name="RiverAmbientAudioStream" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 19)
+stream = ExtResource("5_mdlpv")
+volume_db = -10.0
+autoplay = true
+bus = &"Ambient"
+
+[node name="WindAmbientAudioStream" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 17, 9)
+stream = ExtResource("6_rckm3")
+attenuation_model = 3
+autoplay = true
+bus = &"Ambient"

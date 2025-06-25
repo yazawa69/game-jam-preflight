@@ -22,7 +22,6 @@ func enter() -> void:
 	super() # used for debugging, just prints out the name of the current state
 	# check once for input right after entering the state, if this is not done then there is input delay
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	print(footsteps)
 	footsteps.finished.connect(_on_asp_footsteps_finished)
 	footsteps.play()
 
