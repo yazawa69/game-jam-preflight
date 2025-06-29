@@ -8,6 +8,11 @@ extends CharacterBody3D
 
 @onready var char_visual: Node3D = %VisualAppearances
 
+# anim trees
+@onready var human_anim_tree: AnimationTree = %AT_Human
+@onready var crane_anim_tree: AnimationTree = %AT_Crane
+
+
 # contains the statemachine, the collisionshape and the mesh of all the characters for easier access
 @export var char_arr: Array
 var _current_index: int = 0
@@ -18,6 +23,7 @@ var _camera_right: Vector3
 var _is_boat: bool = false
 var _is_on_water: bool = false
 var _current_collider
+
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,

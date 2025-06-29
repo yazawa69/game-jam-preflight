@@ -5,9 +5,12 @@ extends State
 @export var jump_state: State # transition implemented
 @export var move_state: State # transition implemented
 
+var _at_blend_value: float
+
 func enter() -> void:
 	super() #prints out the name of the state for debugging
 	parent.velocity = Vector3.ZERO # set velocity of the player to 0 after entering the state
+	_at_blend_value = parent.crane_anim_tree.get("parameters/Blend_wf/blend_amount")
 
 func exit() -> void:
 	pass
@@ -22,6 +25,10 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	# anim blending
+	_at_blend_value = lerp(_at_blend_value, 0.0, delta * 10.)
+	parent.crane_anim_tree.set("parameters/Blend_wf/blend_amount", _at_blend_value)
+	
 	parent.velocity.y -= gravity * delta # gravity 
 	parent.move_and_slide() # calculate physics
 	

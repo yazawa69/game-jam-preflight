@@ -18,8 +18,10 @@ var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _time: float
 var _move_speed: float
+var _at_blend_value: float
 
 @onready var footsteps: AudioStreamPlayer3D = %ASP_Footsteps
+
 
 func enter() -> void:
 	super() # used for debugging, just prints out the name of the current state
@@ -27,6 +29,7 @@ func enter() -> void:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	footsteps.finished.connect(_on_asp_footsteps_finished)
 	footsteps.play()
+	_at_blend_value = parent.human_anim_tree.get("parameters/Blend_IWJ/blend_amount")
 
 func exit() -> void:
 	footsteps.finished.disconnect(_on_asp_footsteps_finished)
@@ -40,6 +43,11 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	# anim blending
+	_at_blend_value = lerp(_at_blend_value, 0.0, delta * 10.)
+	parent.human_anim_tree.set("parameters/Blend_IWJ/blend_amount", _at_blend_value)
+	
+	# water behaviour
 	if parent._is_on_water:
 		_move_speed = .5
 	else:
@@ -70,7 +78,7 @@ func process_physics(delta: float) -> State:
 	#print(rad_to_deg(parent.get_floor_angle())) # debug information
 	
 	# transition to idle state
-	if _input_dir == Vector2.ZERO and parent.velocity == Vector3.ZERO:
+	if _input_dir == Vector2.ZERO and parent.velocity.length() <= .25 :
 		return idle_state
 	
 	# transition to fall state
