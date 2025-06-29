@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://5yhm2te35gar"]
+[gd_scene load_steps=32 format=3 uid="uid://5yhm2te35gar"]
 
 [ext_resource type="Script" uid="uid://dy3ttxark73hp" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_b0oxt"]
 [ext_resource type="Script" uid="uid://dwt1c1uuwpojl" path="res://Scripts/StateMachine/state_machine.gd" id="2_q8eto"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ov6gk5cwd4qn" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_move_state.gd" id="4_5rqbl"]
 [ext_resource type="Script" uid="uid://bttis1dmq58ba" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_fall_state.gd" id="5_am6yf"]
 [ext_resource type="Script" uid="uid://bjbv054llvtl7" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_jump_state.gd" id="6_aqqdf"]
+[ext_resource type="AudioStream" uid="uid://c8k8wkcrhrgb0" path="res://Resources/Audio/StreamResources/water_splash_rando.tres" id="6_od8hc"]
 [ext_resource type="Script" uid="uid://dx6msnqd0gbph" path="res://Scripts/PlayerCharacter/PlayerStates/CraneStates/c_float_state.gd" id="7_dv8fq"]
 [ext_resource type="Script" uid="uid://dxu5i7k63fexh" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_idle_state.gd" id="8_do06u"]
 [ext_resource type="Script" uid="uid://cqp110ynvb57c" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_move_state.gd" id="9_d61ru"]
@@ -15,16 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://cis4ekj701g72" path="res://Resources/Models/Crane/crane.blend" id="13_t8il2"]
 [ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="14_5rqbl"]
 [ext_resource type="PackedScene" uid="uid://cxen583cq5xc7" path="res://Resources/Models/Boat/test_boat.blend" id="14_c5es3"]
-[ext_resource type="AudioStream" uid="uid://30vgp0i4u178" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footsteps7.wav" id="14_hhkxd"]
 [ext_resource type="Script" uid="uid://bc1mtas6lu430" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_idle_state.gd" id="14_wigkn"]
 [ext_resource type="Script" uid="uid://brfkur3tjgc25" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_move_state.gd" id="15_5tp3p"]
-[ext_resource type="AudioStream" uid="uid://bd4322k1bvty4" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV2.wav" id="15_c5es3"]
 [ext_resource type="Script" uid="uid://biwnkep5j3bge" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_fall_state.gd" id="15_wigkn"]
-[ext_resource type="AudioStream" uid="uid://dt6vtw4ryw5be" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV3.wav" id="16_od8hc"]
-[ext_resource type="AudioStream" uid="uid://6vxn2kkth031" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV4.wav" id="17_p156y"]
-[ext_resource type="AudioStream" uid="uid://cl0gf51w6b7rc" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV5.wav" id="18_wigkn"]
-[ext_resource type="AudioStream" uid="uid://wtfyupbv6ktg" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV6.wav" id="19_5tp3p"]
-[ext_resource type="AudioStream" uid="uid://cs3f846qk0uup" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Human/footstepsV.wav" id="20_ki3jj"]
+[ext_resource type="AudioStream" uid="uid://bskiv05tovnk3" path="res://Resources/Audio/StreamResources/footstep_rando.tres" id="18_c5es3"]
+[ext_resource type="AudioStream" uid="uid://ddwkxfry8ogmg" path="res://Resources/Audio/SoundEffects/vfx_boat.mp3" id="23_p156y"]
 [ext_resource type="AudioStream" uid="uid://ccu7t8bfb56ju" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_01.wav" id="25_umdb5"]
 [ext_resource type="AudioStream" uid="uid://cb00qiwehaobl" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_02.wav" id="26_penjb"]
 [ext_resource type="AudioStream" uid="uid://drylqu2im3wvy" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_03.wav" id="27_fmay1"]
@@ -38,16 +34,6 @@ _data = [Vector2(0, 0.449438), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.12219, 0.0, 0, 0
 point_count = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c5es3"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_umdb5"]
-streams_count = 7
-stream_0/stream = ExtResource("14_hhkxd")
-stream_1/stream = ExtResource("15_c5es3")
-stream_2/stream = ExtResource("16_od8hc")
-stream_3/stream = ExtResource("17_p156y")
-stream_4/stream = ExtResource("18_wigkn")
-stream_5/stream = ExtResource("19_5tp3p")
-stream_6/stream = ExtResource("20_ki3jj")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1k180"]
 streams_count = 3
@@ -91,6 +77,8 @@ idle_state = NodePath("../IdleState")
 jump_state = NodePath("../JumpState")
 fall_state = NodePath("../FallState")
 acceleration_curve = SubResource("Curve_p156y")
+footsteps_audiosource = ExtResource("18_c5es3")
+watersplash_audiosource = ExtResource("6_od8hc")
 
 [node name="FallState" type="Node" parent="StateMachines/Human" node_paths=PackedStringArray("idle_state", "move_state", "double_jump_state")]
 script = ExtResource("10_fg5c0")
@@ -202,12 +190,20 @@ visible = false
 
 [node name="ASP_Footsteps" type="AudioStreamPlayer3D" parent="AudioStreams"]
 unique_name_in_owner = true
-stream = SubResource("AudioStreamRandomizer_umdb5")
+stream = ExtResource("18_c5es3")
 bus = &"Sound Effects"
 
 [node name="ASP_Wingflaps" type="AudioStreamPlayer3D" parent="AudioStreams"]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_1k180")
+bus = &"Sound Effects"
+
+[node name="ASP_BoatSounds" type="AudioStreamPlayer3D" parent="AudioStreams"]
+unique_name_in_owner = true
+stream = ExtResource("23_p156y")
+attenuation_model = 3
+volume_db = 80.0
+max_db = 6.0
 bus = &"Sound Effects"
 
 [node name="HumanCollision" type="CollisionShape3D" parent="."]

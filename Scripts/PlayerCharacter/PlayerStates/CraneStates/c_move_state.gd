@@ -15,6 +15,7 @@ extends State
 var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _time: float
+var _move_speed: float
 
 func enter() -> void:
 	super() # used for debugging, just prints out the name of the current state
@@ -30,6 +31,11 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if parent._is_on_water:
+		_move_speed = 2.
+	else:
+		_move_speed = max_speed
+	
 	_time = clamp(_time, 0.0, 1.0)
 	var non_linear_acc := acceleration_curve.sample(_time)
 	parent.velocity.y -= gravity * delta # gravity
@@ -40,7 +46,7 @@ func process_physics(delta: float) -> State:
 	_direction = (_input_dir.x * parent._camera_right + _input_dir.y * parent._camera_forward).normalized()
 	if  _input_dir != Vector2.ZERO: # Accelerate when moving
 		_time += delta
-		parent.velocity = parent.velocity.lerp(_direction * max_speed, non_linear_acc * acceleration * delta)
+		parent.velocity = parent.velocity.lerp(_direction * _move_speed, non_linear_acc * acceleration * delta)
 		parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 		_blend_from_position = _blend_from_position.lerp(_blend_to_position, delta * transition_speed * non_linear_acc + .1) # lerp to idle anim in the blend space
 	else: # Decelerate if no input

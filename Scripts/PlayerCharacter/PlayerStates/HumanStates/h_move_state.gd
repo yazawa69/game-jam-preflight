@@ -11,10 +11,13 @@ extends State
 @export var deceleration: float = 10.0
 @export var rotation_speed: float = 7.0 # Speed at which the player rotates to face movement direction
 @export var acceleration_curve: Curve # for non linear interpolation
+@export var footsteps_audiosource: AudioStreamRandomizer
+@export var watersplash_audiosource: AudioStreamRandomizer
 
 var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _time: float
+var _move_speed: float
 
 @onready var footsteps: AudioStreamPlayer3D = %ASP_Footsteps
 
@@ -37,6 +40,11 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if parent._is_on_water:
+		_move_speed = .5
+	else:
+		_move_speed = max_speed
+	
 	_time = clamp(_time, 0.0, 1.0)
 	var non_linear_acc := acceleration_curve.sample(_time)
 	parent.velocity.y -= gravity * delta # gravity
@@ -48,7 +56,7 @@ func process_physics(delta: float) -> State:
 	if  _input_dir != Vector2.ZERO: # Accelerate when moving
 		footsteps.stream_paused = false
 		_time += delta
-		parent.velocity = parent.velocity.lerp(_direction * max_speed, non_linear_acc * acceleration * delta)
+		parent.velocity = parent.velocity.lerp(_direction * _move_speed, non_linear_acc * acceleration * delta)
 		parent._rotate_character(delta, rotation_speed, _direction) # Smoothly rotate the player towards the movement direction
 		_blend_from_position = _blend_from_position.lerp(_blend_to_position, delta * transition_speed * non_linear_acc + .1) # lerp to idle anim in the blend space
 	else: # Decelerate if no input
@@ -72,4 +80,5 @@ func process_physics(delta: float) -> State:
 	return null
 
 func _on_asp_footsteps_finished():
+	#footsteps.stream = watersplash_audiosource if parent._is_on_water else footsteps_audiosource
 	footsteps.play()

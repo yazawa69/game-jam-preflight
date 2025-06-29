@@ -11,6 +11,7 @@ extends State
 
 @onready var test_boat = %test_boat # hotfix
 @onready var boat_collision = %BoatCollision # hotfix
+@onready var boat_audio_player = %ASP_BoatSounds
 
 
 var target_velocity: Vector3 = Vector3.ZERO
@@ -21,6 +22,10 @@ func enter() -> void:
 	super() #prints out the name of the state for debugging
 	boat_collision.global_rotation.y = test_boat.global_rotation.y + PI*.5 # hotfix
 	parent.velocity = Vector3.ZERO # set velocity of the player to 0 after entering the state
+	boat_audio_player.play()
+
+func exit() -> void:
+	boat_audio_player.stop()
 
 func process_physics(delta: float) -> State:
 	var _move_speed = move_speed if parent._is_on_water else 50.0

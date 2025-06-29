@@ -44,6 +44,10 @@ func _physics_process(delta: float) -> void:
 		if collider != _current_collider:
 			_current_collider = collider
 			_is_on_water = true if collider.is_in_group("water") else false
+			if _is_on_water and not _is_boat:
+				await get_tree().create_timer(3.).timeout
+				# TODO: player has to die and respawn somewhere
+				print("you drowned...")
 
 func _process(delta: float) -> void:
 	_state_machine.process_frame(delta)
