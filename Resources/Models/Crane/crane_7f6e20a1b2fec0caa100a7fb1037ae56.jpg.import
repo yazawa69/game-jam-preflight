@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blohj1d4wfl0r"
-path.s3tc="res://.godot/imported/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg-6dcecfc349af3f9a3e3f3df6c79a6115.s3tc.ctex"
+uid="uid://ctxgckiertqy"
+path.s3tc="res://.godot/imported/crane_7f6e20a1b2fec0caa100a7fb1037ae56.jpg-ddce940ad9f164612394e5d23d88a6b9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "f01097367f7d38cb399016ec4e81c285"
+}
 
 [deps]
 
-source_file="res://Resources/Models/Crane/textures/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg"
-dest_files=["res://.godot/imported/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg-6dcecfc349af3f9a3e3f3df6c79a6115.s3tc.ctex"]
+source_file="res://Resources/Models/Crane/crane_7f6e20a1b2fec0caa100a7fb1037ae56.jpg"
+dest_files=["res://.godot/imported/crane_7f6e20a1b2fec0caa100a7fb1037ae56.jpg-ddce940ad9f164612394e5d23d88a6b9.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Resources/Modelss/Crane/textures/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg"
+roughness/src_normal="res://Resources/Models/Crane/crane_7f6e20a1b2fec0caa100a7fb1037ae56.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

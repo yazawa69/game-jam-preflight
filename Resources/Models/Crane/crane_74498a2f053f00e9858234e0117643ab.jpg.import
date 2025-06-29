@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drve1pgwedhpy"
-path.s3tc="res://.godot/imported/a082bef0239ce59eb8ce7d3db0e55bd2.jpg-ffd8fcb5bb500ee636478d45ba27477e.s3tc.ctex"
+uid="uid://dodpqd0yquirj"
+path.s3tc="res://.godot/imported/crane_74498a2f053f00e9858234e0117643ab.jpg-98c4e56c49c9730a49f42af03a88aac0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "7562930e0f608dcf09dc11524e40b625"
+}
 
 [deps]
 
-source_file="res://Resources/Models/Crane/textures/a082bef0239ce59eb8ce7d3db0e55bd2.jpg"
-dest_files=["res://.godot/imported/a082bef0239ce59eb8ce7d3db0e55bd2.jpg-ffd8fcb5bb500ee636478d45ba27477e.s3tc.ctex"]
+source_file="res://Resources/Models/Crane/crane_74498a2f053f00e9858234e0117643ab.jpg"
+dest_files=["res://.godot/imported/crane_74498a2f053f00e9858234e0117643ab.jpg-98c4e56c49c9730a49f42af03a88aac0.s3tc.ctex"]
 
 [params]
 
