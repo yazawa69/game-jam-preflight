@@ -11,7 +11,7 @@ func enter() -> void:
 	_initial_velocity = abs(parent.velocity.normalized())*3.5
 
 func process_physics(delta: float) -> State:
-	parent.velocity.y -= gravity * 20. * delta # gravity
+	parent.velocity.y -= gravity * 10. * delta # gravity
 	parent.move_and_slide() # calculate physics
 	
 	# transition to move state

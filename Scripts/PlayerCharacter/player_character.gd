@@ -42,18 +42,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		pass
 
 func _physics_process(delta: float) -> void:
-	_state_machine.process_physics(delta)
 	# check for water planes
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
+		if get_slide_collision(i) == null: break
 		var collider = collision.get_collider()
 		if collider != _current_collider:
 			_current_collider = collider
 			_is_on_water = true if collider.is_in_group("water") else false
 			if _is_on_water and not _is_boat:
 				await get_tree().create_timer(3.).timeout
-				# TODO: player has to die and respawn somewhere
-				print("you drowned...")
+				# check again if player is still on water and still not a boat
+				if _is_on_water and not _is_boat: 
+					# TODO: player has to die and respawn somewhere
+					print("you drowned...")
+	
+	_state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	_state_machine.process_frame(delta)

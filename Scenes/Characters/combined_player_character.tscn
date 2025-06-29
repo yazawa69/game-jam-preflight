@@ -14,13 +14,13 @@
 [ext_resource type="Script" uid="uid://bigmsywst72lt" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_jump_state.gd" id="11_hhkxd"]
 [ext_resource type="Script" uid="uid://b2rasl7786bte" path="res://Scripts/PlayerCharacter/PlayerStates/HumanStates/h_double_jump_state.gd" id="12_c5es3"]
 [ext_resource type="Script" uid="uid://b52fc06idc0g3" path="res://Scripts/PlayerCharacter/cam_controller.gd" id="14_5rqbl"]
-[ext_resource type="PackedScene" uid="uid://cxen583cq5xc7" path="res://Resources/Models/Boat/test_boat.blend" id="14_c5es3"]
 [ext_resource type="Script" uid="uid://bc1mtas6lu430" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_idle_state.gd" id="14_wigkn"]
 [ext_resource type="Script" uid="uid://brfkur3tjgc25" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_move_state.gd" id="15_5tp3p"]
 [ext_resource type="Script" uid="uid://biwnkep5j3bge" path="res://Scripts/PlayerCharacter/PlayerStates/BoatStates/b_fall_state.gd" id="15_wigkn"]
 [ext_resource type="AudioStream" uid="uid://bskiv05tovnk3" path="res://Resources/Audio/StreamResources/footstep_rando.tres" id="18_c5es3"]
 [ext_resource type="PackedScene" uid="uid://csncbx40h3vj5" path="res://Resources/Models/Human/human.glb" id="18_wigkn"]
 [ext_resource type="PackedScene" uid="uid://ci4csqbyu2n7u" path="res://Resources/Models/Crane/crane.glb" id="19_wigkn"]
+[ext_resource type="PackedScene" uid="uid://dvwm4nlws76va" path="res://Resources/Models/Boat/boat.blend" id="21_5tp3p"]
 [ext_resource type="AudioStream" uid="uid://ddwkxfry8ogmg" path="res://Resources/Audio/SoundEffects/vfx_boat.mp3" id="23_p156y"]
 [ext_resource type="AudioStream" uid="uid://ccu7t8bfb56ju" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_01.wav" id="25_umdb5"]
 [ext_resource type="AudioStream" uid="uid://cb00qiwehaobl" path="res://Resources/Audio/SoundEffects/PlayerCharacter/Crane/vfx_flap_02.wav" id="26_penjb"]
@@ -130,7 +130,7 @@ node_connections = [&"Blend_to_fold", 0, &"Blend_wf", &"Blend_to_fold", 1, &"fol
 [node name="CombinedPlayerCharacter" type="CharacterBody3D" groups=["PlayerCharacter"]]
 collision_layer = 2
 script = ExtResource("1_b0oxt")
-char_arr = [[NodePath("StateMachines/Human"), NodePath("VisualAppearances/human"), NodePath("HumanCollision")], [NodePath("StateMachines/Crane"), NodePath("VisualAppearances/crane"), NodePath("CraneCollision")], [NodePath("StateMachines/Boat"), NodePath("VisualAppearances/test_boat"), NodePath("BoatCollision")]]
+char_arr = [[NodePath("StateMachines/Human"), NodePath("VisualAppearances/human"), NodePath("HumanCollision")], [NodePath("StateMachines/Crane"), NodePath("VisualAppearances/crane"), NodePath("CraneCollision")], [NodePath("StateMachines/Boat"), NodePath("VisualAppearances/boat"), NodePath("BoatCollision")]]
 metadata/_custom_type_script = "uid://dy3ttxark73hp"
 
 [node name="StateMachines" type="Node" parent="."]
@@ -234,19 +234,17 @@ transform = Transform3D(1.965, 0, 0, 0, 1.965, 0, 0, 0, 1.965, 0, -0.324425, 0)
 [node name="Skeleton3D" parent="VisualAppearances/human/Armature" index="0"]
 bones/0/position = Vector3(2.64698e-23, 0.260137, 0.036929)
 bones/0/rotation = Quaternion(0.0595455, 1.18998e-07, 7.09837e-09, 0.998226)
-bones/2/rotation = Quaternion(-0.12813, -0.00341353, -0.185475, 0.974254)
+bones/2/rotation = Quaternion(-0.127799, -0.00365221, -0.198443, 0.971738)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.02362, -9.81178e-05, -0.788281, 0.614862)
-bones/4/rotation = Quaternion(0.0867292, 0.0783959, -0.260254, 0.958436)
+bones/4/rotation = Quaternion(0.0829521, 0.0792895, -0.244444, 0.962849)
 bones/5/rotation = Quaternion(-0.121566, -0.0219968, 0.26249, 0.956994)
 bones/6/rotation = Quaternion(0.0236198, 9.79727e-05, 0.788281, 0.614862)
-bones/7/rotation = Quaternion(0.137209, 0.0257485, 0.306538, 0.941565)
+bones/7/rotation = Quaternion(0.135826, 0.0247088, 0.295617, 0.945279)
 bones/8/rotation = Quaternion(-0.121566, 0.0219968, -0.26249, 0.956994)
 bones/9/rotation = Quaternion(0.557907, 0.434442, 0.557907, -0.434442)
-bones/10/rotation = Quaternion(-0.482134, 5.15455e-08, 6.47859e-08, 0.876097)
 bones/11/rotation = Quaternion(0.501249, 2.11093e-08, -5.89185e-08, 0.865303)
 bones/12/rotation = Quaternion(0.557907, -0.434442, -0.557907, -0.434442)
-bones/13/rotation = Quaternion(-0.482134, -5.15455e-08, -6.47859e-08, 0.876097)
 bones/14/rotation = Quaternion(0.501249, -2.11093e-08, 5.89185e-08, 0.865303)
 
 [node name="AnimationPlayer" parent="VisualAppearances/human" index="1"]
@@ -257,12 +255,12 @@ transform = Transform3D(-2.62268e-08, 0, -0.6, 0, 0.6, 0, 0.6, 0, -2.62268e-08, 
 visible = false
 
 [node name="Skeleton3D" parent="VisualAppearances/crane/Armature" index="0"]
-bones/0/position = Vector3(0.0758366, 0.475635, 0.176494)
-bones/0/rotation = Quaternion(0.0895713, -0.712803, -0.0415559, 0.694378)
+bones/0/position = Vector3(0.0765396, 0.496242, -0.0117959)
+bones/0/rotation = Quaternion(0.0480257, -0.714013, 0.0010025, 0.698483)
 bones/1/position = Vector3(0.0117238, 0.0410071, 0.434311)
 bones/1/rotation = Quaternion(0.177126, 0.693093, 0.219418, 0.663404)
 bones/2/rotation = Quaternion(0.0308786, 0.0137554, 0.0263042, 0.999082)
-bones/3/rotation = Quaternion(-0.0422133, 0.0178803, 0.0394311, 0.99817)
+bones/3/rotation = Quaternion(-0.0422133, 0.0178804, 0.0394311, 0.99817)
 bones/4/rotation = Quaternion(0.029362, -0.00923784, 0.0261839, 0.999183)
 bones/5/position = Vector3(-0.0360225, -0.0268451, -0.390743)
 bones/5/rotation = Quaternion(-0.26987, -0.00543886, 0.000660738, 0.962881)
@@ -273,9 +271,9 @@ bones/9/rotation = Quaternion(-0.0351205, 0.00244308, -0.00611022, 0.999361)
 bones/10/rotation = Quaternion(0.551167, -0.479485, -0.54258, -0.414626)
 bones/11/rotation = Quaternion(-0.00265411, -0.0135185, 0.0289445, 0.999486)
 
-[node name="test_boat" parent="VisualAppearances" instance=ExtResource("14_c5es3")]
+[node name="boat" parent="VisualAppearances" instance=ExtResource("21_5tp3p")]
 unique_name_in_owner = true
-transform = Transform3D(-1.09278e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.09278e-08, 0, 0, 0)
+transform = Transform3D(-7.32166e-08, 0, -1.675, 0, 1.675, 0, 1.675, 0, -7.32166e-08, 0, -0.372124, 0)
 visible = false
 
 [node name="AudioStreams" type="Node3D" parent="."]
