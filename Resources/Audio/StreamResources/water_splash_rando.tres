@@ -1,0 +1,17 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://c8k8wkcrhrgb0"]
+
+[ext_resource type="AudioStream" uid="uid://dmdj1b3j0fuvp" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_01.wav" id="1_rgt1e"]
+[ext_resource type="AudioStream" uid="uid://bknibfid50ju7" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_02.wav" id="2_7ra0q"]
+[ext_resource type="AudioStream" uid="uid://df3wb3kclg4ug" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_03.wav" id="3_evck5"]
+[ext_resource type="AudioStream" uid="uid://cp54rmu28q07w" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_04.wav" id="4_g3pj6"]
+[ext_resource type="AudioStream" uid="uid://c2wpgcq80cofk" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_05.wav" id="5_63swi"]
+[ext_resource type="AudioStream" uid="uid://bbnjfmb5sl42w" path="res://Resources/Audio/SoundEffects/PlayerCharacter/watersplash_short/vfx_water_splash_short_06.wav" id="6_pfsyl"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_rgt1e")
+stream_1/stream = ExtResource("2_7ra0q")
+stream_2/stream = ExtResource("3_evck5")
+stream_3/stream = ExtResource("4_g3pj6")
+stream_4/stream = ExtResource("5_63swi")
+stream_5/stream = ExtResource("6_pfsyl")
