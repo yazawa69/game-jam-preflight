@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://psjinnrwgqx4"
-path.s3tc="res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"
+uid="uid://b7vs3kepte2cr"
+path.s3tc="res://.godot/imported/island_lowpoly_island_new.png-457dd2d0243a96099991894aca76b4db.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ecb750956d74fc43f210166ed9e32f46"
+}
 
 [deps]
 
-source_file="res://Resources/Models/Pole/textures/Image_0.jpg"
-dest_files=["res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"]
+source_file="res://Resources/Models/Islands/island_lowpoly_island_new.png"
+dest_files=["res://.godot/imported/island_lowpoly_island_new.png-457dd2d0243a96099991894aca76b4db.s3tc.ctex"]
 
 [params]
 

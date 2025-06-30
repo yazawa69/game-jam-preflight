@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://psjinnrwgqx4"
-path.s3tc="res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"
+uid="uid://x568veryrpsk"
+path.s3tc="res://.godot/imported/paper-texture.jpg-038f7450f2295bc4e79ffccb496901f7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Models/Pole/textures/Image_0.jpg"
-dest_files=["res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"]
+source_file="res://Resources/Models/textures/paper-texture.jpg"
+dest_files=["res://.godot/imported/paper-texture.jpg-038f7450f2295bc4e79ffccb496901f7.s3tc.ctex"]
 
 [params]
 

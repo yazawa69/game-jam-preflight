@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://psjinnrwgqx4"
-path.s3tc="res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"
+uid="uid://db3ibuj4xexpp"
+path.s3tc="res://.godot/imported/island_lowpoly_jetty.png-a22098b26eaaa0608abb1471c2830e30.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4ae1adfa459ca73177813287bc9fedd6"
+}
 
 [deps]
 
-source_file="res://Resources/Models/Pole/textures/Image_0.jpg"
-dest_files=["res://.godot/imported/Image_0.jpg-f185ba4b3c02a8d40133a61b69421fbb.s3tc.ctex"]
+source_file="res://Resources/Models/Islands/island_lowpoly_jetty.png"
+dest_files=["res://.godot/imported/island_lowpoly_jetty.png-a22098b26eaaa0608abb1471c2830e30.s3tc.ctex"]
 
 [params]
 
