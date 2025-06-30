@@ -8,6 +8,11 @@ extends CharacterBody3D
 
 @onready var char_visual: Node3D = %VisualAppearances
 
+# anim trees
+@onready var human_anim_tree: AnimationTree = %AT_Human
+@onready var crane_anim_tree: AnimationTree = %AT_Crane
+
+
 # contains the statemachine, the collisionshape and the mesh of all the characters for easier access
 @export var char_arr: Array
 var _current_index: int = 0
@@ -18,6 +23,7 @@ var _camera_right: Vector3
 var _is_boat: bool = false
 var _is_on_water: bool = false
 var _current_collider
+
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
@@ -36,14 +42,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		pass
 
 func _physics_process(delta: float) -> void:
-	_state_machine.process_physics(delta)
 	# check for water planes
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
+		if get_slide_collision(i) == null: break
 		var collider = collision.get_collider()
 		if collider != _current_collider:
 			_current_collider = collider
 			_is_on_water = true if collider.is_in_group("water") else false
+			if _is_on_water and not _is_boat:
+				await get_tree().create_timer(3.).timeout
+				# check again if player is still on water and still not a boat
+				if _is_on_water and not _is_boat: 
+					# TODO: player has to die and respawn somewhere
+					print("you drowned...")
+	
+	_state_machine.process_physics(delta)
 
 func _process(delta: float) -> void:
 	_state_machine.process_frame(delta)

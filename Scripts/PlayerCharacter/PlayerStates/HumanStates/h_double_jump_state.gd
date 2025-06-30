@@ -12,6 +12,7 @@ extends State
 var _direction: Vector3 # direction the player wants to move to
 var _input_dir: Vector2 # vector 2 which stores both input axis
 var _initial_velocity: Vector3
+var _at_blend_value: float
 
 
 func enter() -> void:
@@ -20,12 +21,22 @@ func enter() -> void:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	parent.velocity.y = 0.0
 	parent.velocity.y = jump_force # add jump force once
+	_at_blend_value = parent.human_anim_tree.get("parameters/Blend_IWJ/blend_amount")
+	parent.human_anim_tree.set("parameters/TimeSeek/seek_request", 0.0) # reset anim
+	parent.human_anim_tree.set("parameters/TimeScale/scale", .1)
+
+func exit() -> void:
+	parent.human_anim_tree.set("parameters/TimeScale/scale", 1.)
 
 func process_input(event: InputEvent) -> State:
 	_input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	return null
 
 func process_physics(delta: float) -> State:
+	# anim blending
+	_at_blend_value = lerp(_at_blend_value, 1.0, delta * 10.)
+	parent.human_anim_tree.set("parameters/Blend_IWJ/blend_amount", _at_blend_value)
+	
 	# steer player while jumping a little bit
 	parent._get_cam_rotation()
 	_direction = (_input_dir.x * parent._camera_right + _input_dir.y * parent._camera_forward).normalized()

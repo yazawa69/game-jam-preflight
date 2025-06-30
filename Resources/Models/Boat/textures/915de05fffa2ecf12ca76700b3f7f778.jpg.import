@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drve1pgwedhpy"
-path.s3tc="res://.godot/imported/a082bef0239ce59eb8ce7d3db0e55bd2.jpg-ffd8fcb5bb500ee636478d45ba27477e.s3tc.ctex"
+uid="uid://cusi23ve4snxe"
+path.s3tc="res://.godot/imported/915de05fffa2ecf12ca76700b3f7f778.jpg-47676e902c52976cbed8d2f5ee37ddff.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Models/Crane/textures/a082bef0239ce59eb8ce7d3db0e55bd2.jpg"
-dest_files=["res://.godot/imported/a082bef0239ce59eb8ce7d3db0e55bd2.jpg-ffd8fcb5bb500ee636478d45ba27477e.s3tc.ctex"]
+source_file="res://Resources/Models/Boat/textures/915de05fffa2ecf12ca76700b3f7f778.jpg"
+dest_files=["res://.godot/imported/915de05fffa2ecf12ca76700b3f7f778.jpg-47676e902c52976cbed8d2f5ee37ddff.s3tc.ctex"]
 
 [params]
 
@@ -24,8 +24,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://Resources/Models/Boat/textures/a2f439411ae6a9299dc1269de85cf814.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

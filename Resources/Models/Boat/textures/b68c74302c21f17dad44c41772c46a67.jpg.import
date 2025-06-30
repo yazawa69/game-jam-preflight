@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blohj1d4wfl0r"
-path.s3tc="res://.godot/imported/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg-6dcecfc349af3f9a3e3f3df6c79a6115.s3tc.ctex"
+uid="uid://be5fsje5uxbs"
+path.s3tc="res://.godot/imported/b68c74302c21f17dad44c41772c46a67.jpg-62021e531c72a8ac4917e59e96c80a21.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Models/Crane/textures/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg"
-dest_files=["res://.godot/imported/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg-6dcecfc349af3f9a3e3f3df6c79a6115.s3tc.ctex"]
+source_file="res://Resources/Models/Boat/textures/b68c74302c21f17dad44c41772c46a67.jpg"
+dest_files=["res://.godot/imported/b68c74302c21f17dad44c41772c46a67.jpg-62021e531c72a8ac4917e59e96c80a21.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://Resources/Modelss/Crane/textures/f2f8ac5b63dc84074cb9b2bbcec3ef6a.jpg"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
