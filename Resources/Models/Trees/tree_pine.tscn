@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwwonj27vtgrh"]
+
+[ext_resource type="ArrayMesh" uid="uid://dq438a5mkn635" path="res://Resources/Models/Trees/pine.res" id="1_7601k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tn8bq"]
+size = Vector3(1.43007, 2.9259, 1.68059)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_7601k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00342238, -0.000593781, 0.010567)
+shape = SubResource("BoxShape3D_tn8bq")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://w3cxsg0eiewf"]
+
+[ext_resource type="ArrayMesh" uid="uid://bl706snulyl6b" path="res://Resources/Models/Trees/oak.res" id="1_b7g2f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tn8bq"]
+size = Vector3(1.56001, 2.64837, 1.70305)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_b7g2f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134197, 0.0224789, -0.0260541)
+shape = SubResource("BoxShape3D_tn8bq")

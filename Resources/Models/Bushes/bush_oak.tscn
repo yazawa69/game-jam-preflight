@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c847dog28ggxd"]
+
+[ext_resource type="ArrayMesh" uid="uid://03bym8w40g76" path="res://Resources/Models/Bushes/bush_oak.res" id="1_u6iwq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_neg85"]
+size = Vector3(1.54178, 2.11221, 1.79127)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_u6iwq")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00151027, -0.0101485, 0.0124134)
+shape = SubResource("BoxShape3D_neg85")

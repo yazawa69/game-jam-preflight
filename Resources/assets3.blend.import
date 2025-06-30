@@ -224,7 +224,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "uid://c0ng24unfhuev"
+"save_to_file/path": "res://Resources/Models/Flowers/sunflower.res"
 },
 "assets3_Plane_076": {
 "generate/lightmap_uv": 0,
@@ -376,7 +376,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 60.0,
 "save_to_file/enabled": true,
-"save_to_file/path": "uid://8c2rcjloe55o"
+"save_to_file/path": "res://Resources/Models/Trees/oak.res"
 },
 "assets3_Plane_106": {
 "generate/lightmap_uv": 0,

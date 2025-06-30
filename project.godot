@@ -23,6 +23,14 @@ buses/default_bus_layout="res://Resources/Audio/default_bus_layout.tres"
 
 EventBus="*res://Scripts/Autoloads/EventBus.gd"
 
+[display]
+
+window/size/mode=3
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dreadpon.spatial_gardener/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

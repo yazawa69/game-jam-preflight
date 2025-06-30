@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://7nhrvtkd72yk"]
+
+[ext_resource type="ArrayMesh" uid="uid://bw5eexjqfs5tx" path="res://Resources/Models/Trees/birch.res" id="1_xse56"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tn8bq"]
+size = Vector3(1.33356, 2.88519, 1.48187)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = ExtResource("1_xse56")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00845337, 0.00924683, -0.016449)
+shape = SubResource("BoxShape3D_tn8bq")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00845337, 0.00924683, -0.016449)
+shape = SubResource("BoxShape3D_tn8bq")
