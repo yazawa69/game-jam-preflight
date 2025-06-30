@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bfuj77hclnott"
+path.s3tc="res://.godot/imported/windmill_694d93aa72c51d8f9c9dd3f8b8466516.jpg-d9318f64cea3e31d9e72b0d0af476098.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "58acd28083a276f299c7fd42fc95f796"
+}
+
+[deps]
+
+source_file="res://Resources/Models/Windmill/windmill_694d93aa72c51d8f9c9dd3f8b8466516.jpg"
+dest_files=["res://.godot/imported/windmill_694d93aa72c51d8f9c9dd3f8b8466516.jpg-d9318f64cea3e31d9e72b0d0af476098.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://Resources/Models/Windmill/windmill_694d93aa72c51d8f9c9dd3f8b8466516.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

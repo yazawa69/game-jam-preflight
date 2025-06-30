@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://di7bqjowfjphi"]
+
+[ext_resource type="Shader" uid="uid://ricxolcj8bkl" path="res://Resources/Shader/island.gdshader" id="1_l2txp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l2txp")
+shader_parameter/grass_color = Vector3(0.52, 0.74, 0.4)
+shader_parameter/sand_color = Vector3(0.96, 0.87, 0.7)
+shader_parameter/center = Vector3(0, 0, 0)
+shader_parameter/island_radius = 5.0
+shader_parameter/blend_radius = 5.0
+shader_parameter/blend_softness = 2.0
+shader_parameter/wave_amplitude = 0.05
+shader_parameter/wave_frequency = 6.0
